@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
@@ -68,11 +68,8 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
+                        <h5 class="m-b-10">Products</h5>
                     </div>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Products</li>
-                    </ul>
                 </div>
                 <div class="page-header-right ms-auto">
                     <div class="page-header-right-items">
@@ -90,7 +87,19 @@
                                     <span>Filter</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <div class="dropdown-item">
+                                    <form action="/admin/products/search" method="post">
+                                        @csrf
+                                        <div class="dropdown-item">
+                                            <div class="search-form">
+                                                <input type="text" name="product_name" class="form-control  mb-2"
+                                                    placeholder="Name" />
+                                                <input type="text" name="quantity" class="form-control  mb-2"
+                                                    placeholder="Quantity" min="0" />
+                                                <button class="btn btn-primary" type="submit">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {{-- <div class="dropdown-item">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="Category"
                                                 checked="checked" />
@@ -126,7 +135,7 @@
                                             <label class="custom-control-label c-pointer"
                                                 for="Quantity">Quantity</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="dropdown-divider"></div>
                                     <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="dropdown-item">
                                         <i class="feather-plus me-3"></i>

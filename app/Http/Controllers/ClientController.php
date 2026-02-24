@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Commande;
 use App\Models\Review;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -40,5 +42,30 @@ class ClientController extends Controller
         $review->user_id = Auth::user()->id;
         $review->save();
         return redirect()->back();
+    }
+
+    public function cart()
+    {
+        $categories = Category::all();
+        $commande = Commande::where('client_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        return view('client.shoppingcart')->with('categories', $categories)->with('commande', $commande);
+    }
+
+    public function checkout(Request $request)
+    {
+        $commande = Commande::find($request->commande);
+        $commande->etat = "payee";
+        $commande->update();
+        return redirect('/client/dashboard')->with('success', 'Commande payee');
+    }
+
+    public function messageblock()
+    {
+        return view('client.messageblock');
+    }
+
+    public function mescommandes()
+    {
+        return view('client.commandes.index');
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
@@ -68,11 +68,8 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
+                        <h5 class="m-b-10">Users</h5>
                     </div>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Users</li>
-                    </ul>
                 </div>
                 <div class="page-header-right ms-auto">
                     <div class="page-header-right-items">
@@ -130,6 +127,7 @@
                                                 <th></th>
                                                 <th>Name</th>
                                                 <th>Email</th>
+                                                <th>Etat</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -139,7 +137,19 @@
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td></td>
+                                                    <td>
+                                                        @if ($user->is_active)
+                                                            <span class="badge bg-primary">Active</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Blocked</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="/admin/users/{{ $user->id }}/block"
+                                                            class="btn btn-danger">Block</a>
+                                                        <a href="/admin/users/{{ $user->id }}/unblock"
+                                                            class="btn btn-success">Unblock</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

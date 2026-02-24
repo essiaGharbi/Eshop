@@ -91,4 +91,23 @@ class ProductController extends Controller
             echo "Error";
         }
     }
+
+    public function search(Request $request)
+    {
+        if ($request->product_name && !$request->quantity) {
+            $products = Product::where('name', 'LIKE', '%' . $request->product_name . '%')->get();
+        }
+        if (!$request->product_name && $request->quantity) {
+            $products = Product::where('quantity', '>=',  $request->quantity)->get();
+        }
+        if ($request->product_name && $request->quantity) {
+            $products = Product::where('name', 'LIKE', '%' . $request->product_name . '%')
+                ->where('quantity', '>=',  $request->quantity)->get();
+        }
+        if (!$request->product_name && !$request->quantity) {
+            $products = Product::all();
+        }
+        $categories = Category::all();
+        return view('admin.products.index')->with('products', $products)->with('categories', $categories);
+    }
 }

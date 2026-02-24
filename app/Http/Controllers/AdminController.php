@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Commande;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,8 +38,25 @@ class AdminController extends Controller
         return view('admin.users.index')->with('users', $users);
     }
 
+    public function blockuser($iduser)
+    {
+        $user = User::find($iduser);
+        $user->is_active = false;
+        $user->update();
+        return redirect()->back()->with('success', 'Client bloqué');
+    }
+
+    public function unblockuser($iduser)
+    {
+        $user = User::find($iduser);
+        $user->is_active = true;
+        $user->update();
+        return redirect()->back()->with('success', 'Client activé');
+    }
+
     public function commandes()
     {
-        return view('admin.commandes.index');
+        $commande = Commande::all();
+        return view('admin.commandes.index')->with('commande', $commande);
     }
 }

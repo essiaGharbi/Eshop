@@ -10,7 +10,7 @@
     <meta name="author" content="flexilecode" />
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Admin || Users</title>
+    <title>Client || Commandes</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('mainassets/images/favicon.ico') }}" />
@@ -40,13 +40,13 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="/admin/dashboard" class="b-brand">
+                <a href="/" class="b-brand">
                     <!-- ========   change your logo hear   ============ -->
                     <img src="{{ asset('mainassets/images/logo-full.png') }}" alt="" class="logo logo-lg" />
                     <img src="{{ asset('mainassets/images/logo-abbr.png') }}" alt="" class="logo logo-sm" />
                 </a>
             </div>
-            @include('components.admin.sidebar')
+            @include('components.client.sidebar')
         </div>
     </nav>
     <!--! ================================================================ !-->
@@ -55,7 +55,7 @@
     <!--! ================================================================ !-->
     <!--! [Start] Header !-->
     <!--! ================================================================ !-->
-    @include('components.admin.navbar')
+    @include('components.client.navbar')
     <!--! ================================================================ !-->
     <!--! [End] Header !-->
     <!--! ================================================================ !-->
@@ -64,6 +64,7 @@
     <!--! ================================================================ !-->
     <main class="nxl-container">
         <div class="nxl-content">
+
             <!-- [ page-header ] start -->
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
@@ -97,16 +98,9 @@
                                     </div>
                                     <div class="dropdown-item">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="Product"
+                                            <input type="checkbox" class="custom-control-input" id="Etat"
                                                 checked="checked" />
-                                            <label class="custom-control-label c-pointer" for="Product">Product</label>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="Client"
-                                                checked="checked" />
-                                            <label class="custom-control-label c-pointer" for="Client">Client</label>
+                                            <label class="custom-control-label c-pointer" for="Etat">Etat</label>
                                         </div>
                                     </div>
                                     <div class="dropdown-item">
@@ -140,7 +134,6 @@
                                         <thead>
                                             <tr class="border-b">
                                                 <th>N° commande</th>
-                                                <th>Client</th>
                                                 <th>Total</th>
                                                 <th>Etat</th>
                                                 <th>Date</th>
@@ -148,22 +141,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($commande as $index => $com)
+                                            @foreach (auth()->user()->commandes as $index => $commande)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $com->client->name }}</td>
-                                                    <td>{{ $com->total() }} TND</td>
+                                                    <td>{{ $commande->total() }} TND</td>
                                                     <td>
-                                                        @if ($com->etat == 'en cours')
-                                                            <span class="badge bg-primary">{{ $com->etat }}</span>
+                                                        @if ($commande->etat == 'en cours')
+                                                            <span class="badge bg-primary">{{ $commande->etat }}</span>
                                                         @else
-                                                            <span class="badge bg-success">{{ $com->etat }}</span>
+                                                            <span class="badge bg-success">{{ $commande->etat }}</span>
                                                         @endif
                                                     </td>
-                                                    <td>{{ $com->created_at }}</td>
+                                                    <td>{{ $commande->created_at }}</td>
                                                     <td>
                                                         <button data-bs-toggle="modal" class="btn btn-primary"
-                                                            data-bs-target="#affichecommande{{ $com->id }}">View
+                                                            data-bs-target="#affichecommande{{ $commande->id }}">View
                                                             details</button>
                                                     </td>
                                                 </tr>
@@ -185,6 +177,28 @@
     <!--! ================================================================ !-->
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
+
+    {{-- Modal afficher commande --}}
+    @foreach (auth()->user()->commandes as $index => $commande)
+        <div class="modal fade" id="affichecommande{{ $commande->id }}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Commande n° {{ $index + 1 }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            {{--  --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    @endforeach
+
 
     <!--! BEGIN: Vendors JS !-->
     <script src="{{ asset('mainassets/vendors/js/vendors.min.js') }}"></script>

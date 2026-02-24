@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -136,18 +136,28 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-reviews" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content__item">
-                                            @foreach ($products->reviews as $review)
-                                                <img src="" alt="" class="img-fluid mr-1 mt-1">
-                                                <h6>{{ $review->user->name }} ** {{ $review->user->created_at }}</h6>
-                                                <div class="text-primary mb-2">
-                                                    @for ($i = 0; $i < $review->rate; $i++)
-                                                        <i class="fa fa-star"></i>
-                                                    @endfor
+                                        @foreach ($products->reviews as $review)
+                                            <div class="product__details__tab__content__item">
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <img style="width: 50px"
+                                                            src="{{ asset('mainassets/images/avatar/1.png') }}"
+                                                            alt="user-image" class="img-fluid user-avtar" />
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h6>{{ $review->user->name }} **
+                                                            {{ $review->user->created_at }}
+                                                        </h6>
+                                                        <div class="text-primary mb-2">
+                                                            @for ($i = 0; $i < $review->rate; $i++)
+                                                                <i class="fa fa-star"></i>
+                                                            @endfor
+                                                        </div>
+                                                        <p>{{ $review->content }}</p>
+                                                    </div>
                                                 </div>
-                                                <p>{{ $review->content }}</p>
-                                            @endforeach
-                                        </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +177,7 @@
                                 <div class="tab-pane active" id="tabs-description" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         <div class="product__details__tab__content__item">
-                                            <h5>Products Infomation</h5>
+                                            <h5>Product Infomations</h5>
                                             <p>{{ $products->description }}.</p>
                                         </div>
                                     </div>
@@ -214,17 +224,6 @@
     <!-- Footer Section Begin -->
     @include('components.guestfooter')
     <!-- Footer Section End -->
-
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
 
     <!-- Js Plugins -->
     <script src="{{ asset('guestassets/js/jquery-3.3.1.min.js') }}"></script>

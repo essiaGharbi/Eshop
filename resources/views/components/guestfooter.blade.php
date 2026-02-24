@@ -32,18 +32,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                <div class="footer__widget">
-                    <h6>NewLetter</h6>
-                    <div class="footer__newslatter">
-                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                        <form action="#">
-                            <input type="text" placeholder="Your email">
-                            <button type="submit"><span class="icon_mail_alt"></span></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">

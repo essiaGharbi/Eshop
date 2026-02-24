@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
@@ -68,11 +68,8 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
+                        <h5 class="m-b-10">Categories</h5>
                     </div>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Categories</li>
-                    </ul>
                 </div>
                 <div class="page-header-right ms-auto">
                     <div class="page-header-right-items">

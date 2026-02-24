@@ -10,7 +10,7 @@
     <meta name="author" content="flexilecode" />
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Client || Profile</title>
+    <title>Client || Dashboard</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('mainassets/images/favicon.ico') }}" />
@@ -40,7 +40,7 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="/client/dashboard" class="b-brand">
+                <a href="/" class="b-brand">
                     <!-- ========   change your logo hear   ============ -->
                     <img src="{{ asset('mainassets/images/logo-full.png') }}" alt="" class="logo logo-lg" />
                     <img src="{{ asset('mainassets/images/logo-abbr.png') }}" alt="" class="logo logo-sm" />
@@ -68,38 +68,15 @@
             <div class="page-header">
                 <div class="page-header-left d-flex align-items-center">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Profile</h5>
+                        <h5 class="m-b-10">Dashboard</h5>
                     </div>
                 </div>
             </div>
             <!-- [ page-header ] end -->
             <!-- [ Main Content ] start -->
             <div class="main-content">
-                @include('components.message')
-                <div class="card col-6">
-                    <div class="card-body">
-                        <form method="POST" action="/client/profile/updateprofile">
-                            @csrf
-                            <div class="form-group">
-                                <label class="card-title" for="name">Name</label>
-                                <input id="name" class="form-control" value="{{ auth::user()->name }}"
-                                    type="text" name="name" />
-                            </div>
-                            <div class="form-group mt-4">
-                                <label class="card-title" for="email">Email</label>
-                                <input id="email" class="form-control" value="{{ auth::user()->email }}"
-                                    type="email" name="email" />
-                            </div>
-                            <div class="form-group mt-4">
-                                <label class="card-title" for="password">Password</label>
-                                <input id="password" class="form-control" type="password" name="password" />
-                            </div>
-                            <div class="form-group mt-4">
-                                <button class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <h1>You're blocked !!</i></h1>
+                <h2>Contact administration...</h2>
             </div>
             <!-- [ Main Content ] end -->
         </div>

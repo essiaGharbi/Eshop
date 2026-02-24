@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, 'user_id', 'id');
     }
+
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class, 'client_id', 'id');
+    }
 }
